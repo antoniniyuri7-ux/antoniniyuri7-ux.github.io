@@ -1,4 +1,4 @@
-# Portfólio — antoniniyuri7-ux
+# Portfólio — Yuri Antonini
 
 Site pessoal público de portfólio, feito em HTML, CSS e JavaScript puro e publicado no GitHub Pages.
 

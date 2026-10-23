@@ -9,13 +9,25 @@ function showError() {
   if (errorBox) errorBox.hidden = false;
 }
 
-function buildLink(href, label) {
-  const link = document.createElement('a');
+function newTabHint() {
+  const hint = document.createElement('span');
+  hint.className = 'sr-only';
+  hint.textContent = ' (abre em nova aba)';
+  return hint;
+}
+
+function makeExternal(link, href) {
   link.href = href;
-  link.textContent = label;
   link.target = '_blank';
   link.rel = 'noopener noreferrer';
+  link.append(newTabHint());
   return link;
+}
+
+function buildLink(href, label) {
+  const link = document.createElement('a');
+  link.textContent = label;
+  return makeExternal(link, href);
 }
 
 function createCard(projeto) {
@@ -27,15 +39,14 @@ function createCard(projeto) {
   const links = fragment.querySelector('.card__links');
   const media = fragment.querySelector('.card__media');
 
-  titleLink.textContent = String(projeto.titulo ?? 'Projeto');
+  const titulo = String(projeto.titulo ?? 'Projeto');
 
   if (isHttps(projeto.repo)) {
-    titleLink.href = projeto.repo;
-    titleLink.target = '_blank';
-    titleLink.rel = 'noopener noreferrer';
+    titleLink.textContent = titulo;
+    makeExternal(titleLink, projeto.repo);
   } else {
-    titleLink.href = '#';
-    titleLink.setAttribute('aria-disabled', 'true');
+    // Sem destino válido: título em texto puro, sem link falso.
+    titleLink.replaceWith(document.createTextNode(titulo));
   }
 
   desc.textContent = String(projeto.descricao ?? '');
@@ -86,7 +97,9 @@ async function init() {
     }
 
     const ordered = [...data.projetos].sort(
-      (a, b) => Number(Boolean(b.destaque)) - Number(Boolean(a.destaque))
+      (a, b) =>
+        Number(Boolean(b.destaque)) - Number(Boolean(a.destaque)) ||
+        (Number(b.ano) || 0) - (Number(a.ano) || 0)
     );
 
     const cards = [];
@@ -99,6 +112,10 @@ async function init() {
     document.dispatchEvent(
       new CustomEvent('projetos:renderizados', { detail: { cards } })
     );
+
+    // Links diretos (ex.: /#contato) rolam antes do render; reajusta após o conteúdo crescer.
+    const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (target) target.scrollIntoView();
   } catch {
     showError();
   }

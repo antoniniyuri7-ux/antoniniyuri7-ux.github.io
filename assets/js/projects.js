@@ -74,6 +74,8 @@ function createCard(projeto) {
 async function init() {
   if (!grid || !template) return;
 
+  if (errorBox) errorBox.hidden = true;
+
   try {
     const response = await fetch('assets/data/projects.json');
     if (!response.ok) throw new Error('Falha ao carregar projetos');

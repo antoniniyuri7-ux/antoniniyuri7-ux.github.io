@@ -1,0 +1,41 @@
+{
+  "versao": 1,
+  "projetos": [
+    {
+      "id": "projeto-1",
+      "titulo": "TODO: titulo do projeto 1",
+      "descricao": "TODO: descricao do projeto 1 em uma ou duas linhas, com problema e solucao.",
+      "stack": ["HTML", "CSS", "JavaScript"],
+      "imagem": null,
+      "imagemAlt": "",
+      "repo": "https://github.com/antoniniyuri7-ux",
+      "demo": null,
+      "destaque": true,
+      "ano": 2026
+    },
+    {
+      "id": "projeto-2",
+      "titulo": "TODO: titulo do projeto 2",
+      "descricao": "TODO: descricao do projeto 2 em uma ou duas linhas, com problema e solucao.",
+      "stack": ["Python", "SQL"],
+      "imagem": null,
+      "imagemAlt": "",
+      "repo": "https://github.com/antoniniyuri7-ux",
+      "demo": null,
+      "destaque": true,
+      "ano": 2026
+    },
+    {
+      "id": "projeto-3",
+      "titulo": "TODO: titulo do projeto 3",
+      "descricao": "TODO: descricao do projeto 3 em uma ou duas linhas, com problema e solucao.",
+      "stack": ["JavaScript"],
+      "imagem": null,
+      "imagemAlt": "",
+      "repo": "https://github.com/antoniniyuri7-ux",
+      "demo": null,
+      "destaque": false,
+      "ano": 2026
+    }
+  ]
+}

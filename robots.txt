@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://antoniniyuri7-ux.github.io/sitemap.xml
